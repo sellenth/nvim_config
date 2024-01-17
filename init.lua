@@ -61,7 +61,7 @@ require("lazy").setup({
 })
 
 
--- shortcuts :)
+-- shortcuts for telescope :)
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
@@ -89,11 +89,6 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
 
-    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-    -- the name of the parser)
-    -- list of language that will be disabled
-    disable = { "c", "rust" },
     -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
     disable = function(lang, buf)
         local max_filesize = 100 * 1024 -- 100 KB
@@ -113,12 +108,6 @@ require'nvim-treesitter.configs'.setup {
 
 -----------------------------------------------
 -- nvim-tree config
--- set termguicolors to enable highlight groups
-
--- empty setup using defaults
-require("nvim-tree").setup()
-
--- OR setup with some options
 require("nvim-tree").setup({
   sort = {
     sorter = "case_sensitive",
