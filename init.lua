@@ -1,3 +1,5 @@
+-- ~/.config/nvim for my unix
+-- C:/Users/me/.AddData/Local/nvim for my windows
 vim.cmd([[
 set completeopt=noinsert,menuone,noselect
 set cursorline
@@ -15,6 +17,7 @@ set shiftwidth=2
 set tabstop=2
 set ignorecase
 set smartcase
+set termguicolors
 ]])
 
 vim.g.mapleader = " "
