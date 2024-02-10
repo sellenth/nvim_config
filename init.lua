@@ -13,6 +13,8 @@ set wildmenu
 set expandtab
 set shiftwidth=2
 set tabstop=2
+set ignorecase
+set smartcase
 ]])
 
 vim.g.mapleader = " "
@@ -46,21 +48,54 @@ require("lazy").setup({
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate"
 	},
+  { 
+      "nvim-tree/nvim-web-devicons",
+  },
   {
     "nvim-tree/nvim-tree.lua",
     version = "*",
     lazy = false,
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-    },
     config = function()
       require("nvim-tree").setup {}
     end,
+  },
+  {'williamboman/mason.nvim'},
+  {'williamboman/mason-lspconfig.nvim'},
+  {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
+  {'neovim/nvim-lspconfig'},
+  {'hrsh7th/cmp-nvim-lsp'},
+  {'hrsh7th/nvim-cmp'},
+  {'L3MON4D3/LuaSnip'},
+  {'luisiacc/gruvbox-baby', branch = 'main'},
+  {'github/copilot.vim'},
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" }
   }
 })
 
+vim.cmd [[colorscheme gruvbox-baby]]
 
 require("treesitter_cfg")
 require("telescope_cfg")
 require("nvim-tree_cfg")
 require("halston")
+
+local lsp_zero = require('lsp-zero')
+
+lsp_zero.on_attach(function(client, bufnr)
+  -- see :help lsp-zero-keybindings
+  -- to learn the available actions
+  lsp_zero.default_keymaps({buffer = bufnr})
+end)
+
+-- to learn how to use mason.nvim with lsp-zero
+-- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  ensure_installed = { typescript, omnisharp },
+  handlers = {
+    lsp_zero.default_setup,
+  },
+})
