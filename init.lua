@@ -102,3 +102,9 @@ require('mason-lspconfig').setup({
     lsp_zero.default_setup,
   },
 })
+
+require'lspconfig'.gdscript.setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+  filetypes = { "gd", "gdscript", "gdscript3" },
+}
