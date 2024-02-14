@@ -1,5 +1,7 @@
-vim.api.nvim_set_keymap('n', '<leader>pv', ':lua print("hello")<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>tt', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>pv', ':lua print("hello")<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>tt', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>do', ':DiffviewOpen<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dc', ':DiffviewClose<CR>', { noremap = true, silent = true })
 
 local harpoon = require("harpoon")
 
