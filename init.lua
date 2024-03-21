@@ -82,6 +82,7 @@ require("lazy").setup({
   { "sindrets/diffview.nvim" },
   { 'mfussenegger/nvim-dap' },
   { 'numToStr/Comment.nvim' },
+  { 'akinsho/toggleterm.nvim', version = "*", opts = {--[[ things you want to change go here]]}}
 })
 
 vim.cmd [[colorscheme gruvbox-baby]]
