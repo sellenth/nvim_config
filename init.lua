@@ -18,8 +18,8 @@ vim.cmd([[
   set ignorecase
   set smartcase
   set termguicolors
-  autocmd BufWritePre * lua vim.lsp.buf.format()
 ]])
+-- autocmd BufWritePre * lua vim.lsp.buf.format()
 
 vim.g.mapleader = " "
 --
@@ -111,7 +111,7 @@ require('mason-lspconfig').setup({
 require 'lspconfig'.gdscript.setup {
   on_attach = on_attach,
   flags = lsp_flags,
-  filetypes = { "gd", "gdscript", "gdscript3" },
+  filetypes = { "gd", "gdscript", "gdscript3", "jq" },
 }
 
 require 'lspconfig'.lua_ls.setup {

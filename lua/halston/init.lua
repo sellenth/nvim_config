@@ -5,12 +5,11 @@ vim.api.nvim_set_keymap('n', '<leader>dc', ':DiffviewClose<CR>', { noremap = tru
 vim.api.nvim_set_keymap('n', '<leader>co', ':Copilot enable<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>cc', ':Copilot disable<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>w', '<c-w>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Tab>', ':e #<CR>', { noremap = true, silent = true })
 
 local harpoon = require("harpoon")
 
--- REQUIRED
 harpoon:setup()
--- REQUIRED
 
 vim.keymap.set("n", "<leader>a", function() harpoon:list():append() end)
 vim.keymap.set("n", "<leader>hm", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
@@ -22,5 +21,5 @@ vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
 vim.keymap.set("n", "<leader>5", function() harpoon:list():select(5) end)
 
 -- Toggle previous & next buffers stored within Harpoon list
-vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
-vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
+vim.keymap.set("n", "<leader>hp", function() harpoon:list():prev() end)
+vim.keymap.set("n", "<leader>hn", function() harpoon:list():next() end)
