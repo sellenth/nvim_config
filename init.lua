@@ -79,15 +79,12 @@ require("lazy").setup({
     dependencies = { "nvim-lua/plenary.nvim" }
   },
   { "habamax/vim-godot" },
-  { "sindrets/diffview.nvim" }
+  { "sindrets/diffview.nvim" },
+  { 'mfussenegger/nvim-dap' },
+  { 'numToStr/Comment.nvim' },
 })
 
 vim.cmd [[colorscheme gruvbox-baby]]
-
-require("treesitter_cfg")
-require("telescope_cfg")
-require("nvim-tree_cfg")
-require("halston")
 
 local lsp_zero = require('lsp-zero')
 
@@ -108,6 +105,22 @@ require('mason-lspconfig').setup({
   },
 })
 
+local dap = require('dap')
+dap.adapters.godot = {
+  type = "server",
+  host = '127.0.0.1',
+  port = 6006,
+}
+dap.configurations.gdscript = {
+  {
+    type = "godot",
+    request = "launch",
+    name = "Launch scene",
+    project = "${workspaceFolder}",
+    launch_scene = true,
+  }
+}
+
 require 'lspconfig'.gdscript.setup {
   on_attach = on_attach,
   flags = lsp_flags,
@@ -123,3 +136,5 @@ require 'lspconfig'.lua_ls.setup {
     }
   }
 }
+
+require('Comment').setup()
