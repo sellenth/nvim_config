@@ -72,17 +72,55 @@ require("lazy").setup({
   { 'hrsh7th/nvim-cmp' },
   { 'L3MON4D3/LuaSnip' },
   { 'luisiacc/gruvbox-baby',            branch = 'main' },
-  { 'github/copilot.vim' },
-  {
-    "ThePrimeagen/harpoon",
-    branch = "harpoon2",
-    dependencies = { "nvim-lua/plenary.nvim" }
-  },
   { "habamax/vim-godot" },
   { "sindrets/diffview.nvim" },
   { 'mfussenegger/nvim-dap' },
   { 'numToStr/Comment.nvim' },
-  { 'akinsho/toggleterm.nvim', version = "*", opts = {--[[ things you want to change go here]]}}
+  { 'akinsho/toggleterm.nvim', version = "*" },
+  {
+    "yetone/avante.nvim",
+    event = "VeryLazy",
+    lazy = false,
+    version = false,
+    config = function()
+      require("avante").setup {}
+    end,
+    build = "pwsh -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- The below dependencies are optional,
+      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      --"zbirenbaum/copilot.lua", -- for providers='copilot'
+      {
+        -- support for image pasting
+        "HakonHarnes/img-clip.nvim",
+        event = "VeryLazy",
+        opts = {
+          -- recommended settings
+          default = {
+            embed_image_as_base64 = false,
+            prompt_for_file_name = false,
+            drag_and_drop = {
+              insert_mode = true,
+            },
+            -- required for Windows users
+            use_absolute_path = true,
+          },
+        },
+      },
+      {
+        -- Make sure to set this up properly if you have lazy=true
+        'MeanderingProgrammer/render-markdown.nvim',
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
+      },
+    }
+  }
 })
 
 vim.cmd [[colorscheme gruvbox-baby]]
